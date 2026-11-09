@@ -1,0 +1,118 @@
+#include<stdio.h>      
+
+
+int main() {
+
+    int senha, senhaDigitada;
+    int opcao;
+    float saldo = 500.00;
+    float deposito, saque;
+    float maiorDeposito = 0.00;
+
+    printf("BEM-VINDO AO NOSSO BANCO\n");
+
+    do {
+        printf("\nCrie uma senha numerica de 4 digitos: ");
+        scanf("%d", &senha);
+
+        if (senha < 1000 || senha > 9999) {
+            printf("Senha invalida! Digite exatamente 4 digitos.\n");
+        }
+
+    } while (senha < 1000 || senha > 9999);
+
+    do {
+
+        printf("\n MENU PRINCIPAL \n");
+        printf("1. Depositar\n");
+        printf("2. Sacar\n");
+        printf("3. Consultar Saldo e Estatisticas\n");
+        printf("4. Sair\n");
+        printf("Escolha uma opcao: ");
+        scanf("%d", &opcao);
+
+        switch (opcao) {
+
+            case 1:
+
+                printf("\nDigite o valor do deposito: R$ ");
+                scanf("%f", &deposito);
+
+                if (deposito <= 0) {
+                    printf("Valor invalido!\n");
+                } else {
+
+                    saldo = saldo + deposito;
+
+                    printf("Deposito realizado com sucesso!\n");
+
+                    if (deposito > maiorDeposito) {
+                        maiorDeposito = deposito;
+                    }
+
+                }
+
+                break;
+
+            case 2:
+
+                printf("\nDigite sua senha para autorizar o saque: ");
+                scanf("%d", &senhaDigitada);
+
+                if (senhaDigitada != senha) {
+
+                    printf("Senha Incorreta! Operacao cancelada.\n");
+
+                } else {
+
+                    printf("Digite o valor do saque: R$ ");
+                    scanf("%f", &saque);
+
+                    if (saque <= 0) {
+
+                        printf("Valor invalido!\n");
+
+                    } else if (saque > saldo) {
+
+                        printf("Saldo Insuficiente!\n");
+
+                    } else {
+
+                        saldo = saldo - saque;
+
+                        printf("Saque realizado com sucesso!\n");
+
+                    }
+
+                }
+
+                break;
+
+            case 3:
+
+                printf("\n SALDO E ESTATISTICAS \n");
+
+                printf("Saldo atual: R$ %.2f\n", saldo);
+
+                printf("Maior deposito realizado: R$ %.2f\n",
+                       maiorDeposito);
+
+                break;
+
+            case 4:
+
+                printf("\nObrigado por usar nosso banco!\n");
+
+                break;
+
+            default:
+
+                printf("\nOpcao invalida! Escolha uma opcao de 1 a 4.\n");
+
+        }
+
+    } while (opcao != 4);
+
+    return 0;
+}
+                      
